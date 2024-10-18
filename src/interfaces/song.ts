@@ -1,7 +1,8 @@
 interface Song {
-    filePath: string;
     title: string;
-    artist: string;
+    artistName: string;
     album: string;
+    filePath?: string;
+    artistId?: string;
     genre?: string;
 }

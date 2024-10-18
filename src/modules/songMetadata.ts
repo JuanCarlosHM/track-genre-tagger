@@ -1,4 +1,4 @@
-import { parseFile } from 'music-metadata'; // Importación directa del módulo ESM
+import { parseFile } from 'music-metadata'; 
 
 export async function analyzeSong(filePath: string): Promise<Song> {
     try {
@@ -7,7 +7,7 @@ export async function analyzeSong(filePath: string): Promise<Song> {
         return {
             filePath,
             title: metadata.common.title || 'Unknown Title',
-            artist: metadata.common.artist || 'Unknown Artist',
+            artistName: metadata.common.artist || 'Unknown Artist',
             album: metadata.common.album || 'Unknown Album',
             genre: metadata.common.genre ? metadata.common.genre[0] : 'Unknown Genre'
         };
@@ -16,7 +16,7 @@ export async function analyzeSong(filePath: string): Promise<Song> {
         return {
             filePath,
             title: 'Unknown Title',
-            artist: 'Unknown Artist',
+            artistName: 'Unknown Artist',
             album: 'Unknown Album'
         };
     }

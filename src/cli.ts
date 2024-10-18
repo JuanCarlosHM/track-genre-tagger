@@ -1,7 +1,8 @@
-import { Command } from 'commander';
 import fs  from 'fs';
 import  path  from 'path';
+import { Command } from 'commander';
 import { main } from './index.js';
+import { authenticateSpotify, getArtistGenres, getSongData } from './services/spotify.service.js';
 
 
 const program = new Command();
@@ -22,13 +23,18 @@ program
     program.usage('[folder] [options]')
     .action(async (folder, options) => {
         try {
+
+            const token = await authenticateSpotify();
+
+           
+
             const resolvedPath = handleAbsolutePath(folder);
             const songs = await main(resolvedPath);
             console.log('Canciones analizadas:');
             console.table(songs);
 
             if (options.output && songs) {
-                fs.writeFileSync(options.output, JSON.stringify(songs, null, 2), 'utf-8');
+                fs.writeFileSync(options.output + '/songs.json', JSON.stringify(songs, null, 2), 'utf-8');
                 console.log(`Resultados guardados en ${options.output}`);
             }
         } catch (error) {
