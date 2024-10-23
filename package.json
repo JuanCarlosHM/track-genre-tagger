@@ -1,15 +1,16 @@
 {
   "name": "track-genre-tagger",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.1",
+  "description": "A library to tag music files with genre data using Spotify API",
+  "main": "dist/cli.js",
   "type": "module",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["music", "tagging", "spotify", "genre", "ffmpeg"],
+  "author": "Juan Carlos Herrera Mercado",
+  "license": "MIT",
   "dependencies": {
     "commander": "^12.1.0",
     "dotenv": "^16.4.5",

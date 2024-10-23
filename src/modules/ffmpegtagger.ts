@@ -16,7 +16,7 @@ export async function tagSong(path : string, outputPath : string, genre? : strin
             "-metadata", `genre=${genre}`)
         .output(outputPath)
         .on('end', () => { 
-            console.log('done');
+            console.log('ffmpg: tagg success');
             resolve(true); 
         })
         .on('error', (err) => {

@@ -74,22 +74,27 @@ export async function getSongData(songTitle: string, token: string): Promise<Son
 
             if(!data.tracks.items[0]) throw new Error('No data about this song! ' + songTitle);
 
-            const songData : Song = { 
-                title : data.tracks.items[0].name,
+            const songData : Song = {
+                title: data.tracks.items[0].name,
                 artistId: data.tracks.items[0].artists[0].id,
                 artistName: data.tracks.items[0].artists[0].name,
-                album: data.tracks.items[0].album.album_type
-
+                album: data.tracks.items[0].album.album_type,
+                filePath: '',
+                tagType: ''
             }
             return songData;
         } else {
-            throw new Error(response.status + response.statusText); 
+            const error = new Error('Spotify API request failed') as any;
+            error.response = response;  
+            error.status = response.status; 
+            error.statusText = response.statusText; 
+            throw error; 
         }
 
 
     } catch (error) {
-        console.log('There was an error', error);
-        throw new Error('error' + error);
+        console.log('There was an error');
+        throw error
     }
    
 }

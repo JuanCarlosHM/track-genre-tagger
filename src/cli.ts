@@ -22,15 +22,17 @@ program
 
             
             const songs = await main(folder);
-            console.log('Canciones analizadas:');
-            console.table(songs);
-
-            if (options.output && songs) {
-                fs.writeFileSync(options.output + '/songs.json', JSON.stringify(songs, null, 2), 'utf-8');
+            console.log('Canciones analizadas.');
+            
+            if (options.data && songs) {
+                fs.writeFileSync(options.data + '/songs.json', JSON.stringify(songs, null, 2), 'utf-8');
                 console.log(`Resultados guardados en ${options.output}`);
             }
+
+            return; 
         } catch (error) {
             console.error('Error al analizar las canciones:', error);
+            return;
         }
     });
 
